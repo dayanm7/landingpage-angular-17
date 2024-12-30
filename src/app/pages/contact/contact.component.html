@@ -1,0 +1,53 @@
+<div class="container">
+  <form
+    [formGroup]="contactForm"
+    class="row g-3 needs-validation"
+    novalidate
+    (submit)="enviar($event)"
+  >
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label"
+        >Email address</label
+      >
+      <input
+        type="email"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="name@example.com"
+        formControlName="email"
+        [ngClass]="{
+          'is-invalid':
+            hasError('email', 'required') || hasError('email', 'email')
+        }"
+      />
+      @if (hasError('email','required')){
+      <span class="text-danger">You need complete this field</span>
+      } @if (hasError('email','email')){
+      <span class="text-danger">Invalid email format</span>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label"
+        >Example textarea</label
+      >
+      <textarea
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="3"
+        formControlName="message"
+        [ngClass]="{
+          'is-invalid':
+            hasError('message', 'required') || hasError('message', 'minlength')
+        }"
+      ></textarea>
+      @if (hasError('message','required')){
+      <span class="text-danger">You need complete this field</span>
+      } @if (hasError('message','minlength')){
+      <span class="text-danger">You have to write at least 10 character</span>
+      }
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
